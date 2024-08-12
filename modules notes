@@ -1,0 +1,24 @@
+Name spacing 
+
+- All Ids in a shiny app need to be unique
+- Use namespaces to make Id names unique for every module instance
+- ns <- NS(id) generates a function that assigns a namespace for every module instance based on its id.i.e
+    ns = NS("my_id")
+- In the ui part all inputIds/outputIds need to be wrapped with ns i.e
+    module_UI <- function(id) {
+        ns <- NS(id)
+        taglist(
+            actionbutton(
+                inputId = ns("start_calculation"),
+                label = "calculate"
+            )
+        ) 
+    }
+- There is no extra work in the server.
+- Always input unevaluated reative values into modules.
+
+
+SUMMARY
+- Dont forget ns in the UI
+- Always input/output unevaluated reactives(if something should react)
+- To dynamically add modules: insertUI/removeUI
